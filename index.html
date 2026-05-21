@@ -3,299 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Vadim</title>
+<title>С Днём Рождения, Вадим!</title>
 <link rel="stylesheet" href="style.css">
-<style>
-/* Карточка */
-.card {
-  background: #fff;
-  border-radius: 20px;
-  padding: 40px;
-  max-width: 1500px;
-  width: 90%;
-  margin: 100px auto;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-/* Canvas для шариков */
-#balloonsCanvas {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  z-index:0;
-  pointer-events:none;
-}
-
-/* Капча */
-.captcha-block {
-  position: fixed;
-  top:0; left:0; width:100%; height:100%;
-  display:flex; justify-content:center; align-items:center;
-  background: rgba(0,0,0,0.7); z-index:100;
-}
-.captcha-card {
-  background: #222;
-  padding: 50px 40px;
-  border-radius: 25px;
-  text-align:center;
-  color:white;
-}
-.captcha-card input { padding:12px; border-radius:10px; border:none; width:200px; margin-bottom:20px; text-align:center; }
-.captcha-card button { padding:12px 30px; border-radius:25px; border:none; background:#111; color:white; cursor:pointer; }
-.captcha-card button:hover { background: #ff2b2b; transform: scale(1.05); }
-
-.sound-icon { position: fixed; top:20px; right:20px; width:40px; cursor:pointer; z-index:10; }
-
-.page { display:none; }
-
-.manual, #praise, #achievements {
-  display: none;
-  margin-top: 20px;
-  text-align: center;
-}
-
-.manual.show, #praise.show, #achievements.show {
-  display: block;
-}
-
-.gallery {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.gallery img {
-  width: 200px;
-  border-radius: 15px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  cursor: pointer;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-}
-
-button:hover { box-shadow: 0 0 15px #ff2b2b, 0 0 30px #ff2b2b70; }
-</style>
 </head>
 <body>
 
-<!-- Капча -->
-<div id="captcha" class="captcha-block">
-  <div class="captcha-card">
-    <h2>Привет! Сначала подтвердите дату:</h2>
-    <p style="color:red;">Какое сегодня число?</p>
-    <input type="text" id="captchaInput" placeholder="ДД.ММ.ГГГГ">
-    <button id="captchaBtn">Проверить</button>
-    <p id="captchaMsg"></p>
-  </div>
-</div>
-
-<!-- Canvas для шариков -->
-<canvas id="balloonsCanvas"></canvas>
-
-<!-- Основной контент -->
-<div class="page">
-
-  <img id="soundToggle" src="volume.png" alt="sound icon" class="sound-icon">
-
-  <img src="left.png" class="side left-side">
-  <img src="right.png" class="side right-side">
-  <img src="banner.jpg" alt="Banner" class="banner">
-
-  <div class="card">
-    <img src="avatar.jpg" alt="Avatar" class="avatar">
+<div class="container">
     <h1>С Днём Рождения, Вадим!</h1>
     <p>Желаю тебе крепкого здоровья, больших побед, уверенности в себе и чтобы каждый новый день приносил только хорошие эмоции.</p>
-    <p>Пусть рядом будут верные люди, а все цели постепенно становятся реальностью.</p>
+    
+    <button id="showAchievementsBtn">Нажми сюда 🎉</button>
 
-    <!-- Аудио с уменьшенной громкостью -->
-    <audio id="favoriteSong" src="BIRDBRAIN.mp3"></audio>
+    <div id="achievements" style="display:none;">
+        <h2>Достижения Вадима 🤖</h2>
+        <p>Вадим не просто человек, а настоящий робот, который умеет всё! Мы ценим его старания и помощь.</p>
 
-    <button id="toggleBtn">Нажми сюда 🎉</button>
-
-    <!-- Новый блок с похвалой -->
-    <div id="praise">
-      <h2>Ты человек очень старательный! ☕</h2>
-      <p>Ты всегда делал всё лучшее, например кофе, которое готовишь сейчас — самое вкусное! Ценим твоё старание и как красиво ты рисуешь рисунки на кофе.</p>
-      <div class="gallery">
-        <img src="cafe.jpg" alt="cafe">
-        <img src="cofe.jpg" alt="cofe">
-        <img src="cofi.jpg" alt="cofi">
-      </div>
-    </div>
-
-    <!-- Блок достижений -->
-    <div id="achievements" class="manual">
-      <h2>Достижения Вадима 🤖</h2>
-      <p>Он настоящий робот, который всё умеет! Мы ценим его старания и помощь!</p>
-      <div class="achievements-row" style="display:flex; justify-content:center; flex-wrap:wrap; gap:20px; margin-top:20px;">
-
-        <!-- 3 видео пианино -->
-        <div style="flex:1; min-width:200px; text-align:center;">
-          <video controls width="200">
-            <source src="Fallen.MOV" type="video/mp4">
-          </video>
-        </div>
-        <div style="flex:1; min-width:200px; text-align:center;">
-          <video controls width="200">
-            <source src="tun tun.MOV" type="video/mp4">
-          </video>
-        </div>
-        <div style="flex:1; min-width:200px; text-align:center;">
-          <video controls width="200">
-            <source src="UP.MOV" type="video/mp4">
-          </video>
+        <!-- Галерея фото -->
+        <div class="gallery">
+            <img src="Cofe.jpg" alt="Cofe">
+            <img src="cofi.jpg" alt="Cofi">
         </div>
 
-       <!-- 3 фото монтажа -->
-<div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:20px;">
-  <div style="flex:1; min-width:200px; text-align:center;">
-    <img src="mon.jpg" alt="Монтаж 1" style="width:100%; border-radius:15px;">
-  </div>
-  <div style="flex:1; min-width:200px; text-align:center;">
-    <img src="Montazh.jpg" alt="Монтаж 2" style="width:100%; border-radius:15px;">
-  </div>
-  <div style="flex:1; min-width:200px; text-align:center;">
-    <img src="montazher.jpg" alt="Монтаж 3" style="width:100%; border-radius:15px;">
-  </div>
-</div>
-<!-- Текст про достижения -->
-<div style="margin-top:30px; text-align:center; max-width:900px; margin-left:auto; margin-right:auto; font-size:18px; line-height:1.6;">
-  <p><strong>Достижения Вадима 🤖</strong></p>
-  <p>Вадим ты не просто человек, а настоящий робот, который умеет всё!🎹 Отлично играешь на пианино, 🎬 Создаешь потрясающие видосики, ☕️ готовишь лучший кофе с рисунками, и 🎨 обладаешь навыками графического дизайнера. Каждый твой проект наполнен мастерством, вниманием к деталям и креативностью.</p>
-  <p>Мы искренне ценим твои старания, профессионализм и постоянную помощь. Вадим ты настоящий пример того, как талант и усердие делают человека уникальным и незаменимым. Ты крут и вдохновляешь всех вокруг!</p>
-</div>
-<!-- Блок с друзьями -->
-<div style="margin-top:40px; text-align:center; max-width:900px; margin-left:auto; margin-right:auto; font-size:18px; line-height:1.6;">
-  <img src="friends.jpg" alt="Друзья" style="width:300px; border-radius:15px; margin-bottom:20px;">
-  <p><strong>Друзья и яркие моменты 🌟</strong></p>
-  <p>Вадим, мы ценим тебя и все времена, которые проводили вместе — это были лучшие моменты! Каждая встреча была яркой и незабываемой, мы смеялись, веселились и просто тусовались вместе. С Днём Рождения тебя, Вадимка! 🎉</p>
-</div>
-      </div>
-    </div>
+        <!-- Видео -->
+        <div class="video-gallery">
+            <video controls width="320">
+                <source src="Coffee.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
 
-    <!-- Мини-мануальчик -->
-    <div id="manual" class="manual">
-      <h2>Мини-мануальчик по кофемашинке ☕</h2>
-      <p>Это мини-мануальчик по кофемашинке, которая у тебя есть 😄</p>
-      <p>Здесь я оставил небольшое видео, чтобы тебе было проще разобраться, как ей пользоваться.</p>
-      <video controls class="manual-video">
-        <source src="coffee.mp4" type="video/mp4">
-        Ваш браузер не поддерживает видео.
-      </video>
-    </div>
+        <!-- Текст о достижениях -->
+        <p>Виртуозное мастерство на пианино, точность и креативность в монтаже видео, умение готовить потрясающий кофе с рисунками, навыки графического дизайна. Каждый проект наполнен мастерством и вниманием к деталям. Мы ценим его старания и помощь!</p>
 
-    <h2 id="secret">Сегодня твой день! Наслаждайся моментом 😄</h2>
-  </div>
+        <!-- Фото друзей -->
+        <div class="friends">
+            <img src="friends.jpg" alt="Friends" style="width:300px;">
+            <p>Мы ценим тебя, все времена вместе были лучшими и каждая встреча была яркой! С Днём Рождения тебя, Вадимка! 🎉</p>
+        </div>
+    </div>
 </div>
 
 <script>
-// --- Проверка даты ---
-const captchaBtn = document.getElementById("captchaBtn");
-const captchaInput = document.getElementById("captchaInput");
-const captchaMsg = document.getElementById("captchaMsg");
-const captchaBlock = document.getElementById("captcha");
-const page = document.querySelector(".page");
+    const btn = document.getElementById('showAchievementsBtn');
+    const achievements = document.getElementById('achievements');
 
-captchaBtn.addEventListener("click", () => {
-  const answer = captchaInput.value.trim();
-  if(answer === "23.05.2026") {
-    captchaBlock.style.display = "none";
-    page.style.display = "block";
-  } else {
-    captchaMsg.textContent = "Неверная дата, попробуй ещё раз!";
-    captchaMsg.style.color = "#ff5555";
-  }
-});
-
-// --- Видео + музыка ---
-const toggleBtn = document.getElementById("toggleBtn");
-const manual = document.getElementById("manual");
-const praise = document.getElementById("praise");
-const achievements = document.getElementById("achievements");
-const song = document.getElementById("favoriteSong");
-
-// Уменьшаем громкость
-song.volume = 0.05;
-
-toggleBtn.addEventListener("click", () => {
-  manual.classList.toggle("show");
-  praise.classList.toggle("show");
-  achievements.classList.toggle("show");
-  if (song.paused) song.play();
-  else { song.pause(); song.currentTime = 0; }
-});
-
-const soundIcon = document.getElementById("soundToggle");
-soundIcon.addEventListener("click", () => {
-  if(song.paused) song.play(); else song.pause();
-});
-
-// --- Шарики красно-бело-черные с веревкой ---
-const canvas = document.getElementById("balloonsCanvas");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-class Balloon {
-  constructor(){
-    this.reset();
-  }
-  reset(){
-    this.x = Math.random()*canvas.width;
-    this.y = canvas.height + Math.random()*200;
-    this.radiusX = 12 + Math.random()*10;
-    this.radiusY = 16 + Math.random()*12;
-    const colors = ["#ff2b2b","#ffffff","#000000"];
-    this.color = colors[Math.floor(Math.random()*colors.length)];
-    this.speed = 1 + Math.random()*2;
-    this.sideDrift = Math.random()*1 - 0.5;
-  }
-  draw(){
-    const grad = ctx.createRadialGradient(this.x, this.y-2, this.radiusY*0.1, this.x, this.y, this.radiusY);
-    grad.addColorStop(0,"#fff");
-    grad.addColorStop(0.3,this.color);
-    grad.addColorStop(1,"rgba(0,0,0,0.4)");
-    ctx.beginPath();
-    ctx.ellipse(this.x, this.y, this.radiusX, this.radiusY, 0, 0, Math.PI*2);
-    ctx.fillStyle = grad;
-    ctx.fill();
-    ctx.closePath();
-    ctx.beginPath();
-    ctx.moveTo(this.x, this.y+this.radiusY);
-    ctx.lineTo(this.x, this.y+this.radiusY+15);
-    ctx.strokeStyle = "#333";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    ctx.closePath();
-  }
-  update(){
-    this.y -= this.speed;
-    this.x += this.sideDrift;
-    if(this.y+this.radiusY < 0) this.reset(), this.y=canvas.height+this.radiusY;
-  }
-}
-
-const balloons = [];
-for(let i=0;i<40;i++) balloons.push(new Balloon());
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  balloons.forEach(b => { b.update(); b.draw(); });
-  requestAnimationFrame(animate);
-}
-
-window.addEventListener('resize',()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
-
-animate();
+    btn.addEventListener('click', () => {
+        if (achievements.style.display === "none") {
+            achievements.style.display = "block";
+            btn.textContent = "Скрыть достижения 🎉";
+        } else {
+            achievements.style.display = "none";
+            btn.textContent = "Нажми сюда 🎉";
+        }
+    });
 </script>
 
 </body>
